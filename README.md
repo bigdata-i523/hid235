@@ -2,16 +2,14 @@
 
 # Owner
 
-```
 owner:
     hid: 235
-    name: Yujie Wu
+    name: Wu, Yujie
     url: https://github.com/bigdata-i523/hid235
-```
+
 
 # Paper 1
 
-```
 paper1:
    author: 
    - Yujie Wu
@@ -22,11 +20,11 @@ paper1:
    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf 
    type: Word
    status: in progress
-```
+
    
 # Paper 2
 
-```
+
 paper2:
    author: 
    - Yujie Wu
@@ -37,7 +35,7 @@ paper2:
    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf 
    type: Word
    status: in progress
-```
+
 
 # Project 
 
