@@ -45,13 +45,12 @@ We will assign new pids for you when we approve the project and reports
 Just use one type and delete the line with 
 
 ```
-paper2:
+project:
    type: project
-   type: report
    author: 
-   - Yujie Wu
-   hid:
-   - 235
+   - Yujie Wu
+   hid:
+   - 235
    title: Benchmarking a BigData Docker deployment
    abstract: This paper showcases tis and that and the other 
    url: https://github.com/bigdata-i523/hid235/project/report.pdf
