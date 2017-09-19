@@ -18,7 +18,7 @@ paper1:
    hid:
    - 235
    title: Big Data in Recommendation System
-   abstract: Paper 1 will be focused on how the company recommend their products and services to their customers based on the     data about customers' preferences. 
+   abstract: Paper 1 will be focused on how the company recommend their products and services to their customers based on the data about customers' preferences. 
    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf 
    type: Word
    status: in progress
@@ -29,12 +29,14 @@ paper1:
 ```
 paper2:
    author: 
-   - Gregor von Laszewski
+   - Yujie Wu
    hid:
-   - 000
-   title: This is my paper about the other abc
-   abstract: This paper showcases tis and that and the other in regards to abc
-   url: https://github.com/bigdata-i523/hid235/paper2/paper2.pdf   
+   - 235
+   title: Big Data 
+   abstract: Paper 1 will be focused on how the company recommend their products and services to their customers based on the data about customers' preferences. 
+   url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf 
+   type: Word
+   status: in progress
 ```
 
 # Project 
@@ -47,9 +49,9 @@ paper2:
    type: project
    type: report
    author: 
-   - Gregor von Laszewski
-   hid:
-   - 000
+   - Yujie Wu
+   hid:
+   - 235
    title: Benchmarking a BigData Docker deployment
    abstract: This paper showcases tis and that and the other 
    url: https://github.com/bigdata-i523/hid235/project/report.pdf
