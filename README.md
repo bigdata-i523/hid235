@@ -5,7 +5,7 @@
 ```
 owner:
     hid: 235
-    name: Wu, Yujie
+    name: Wu, Yujie
     url: https://github.com/bigdata-i523/hid235
 ```
 
