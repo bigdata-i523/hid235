@@ -6,7 +6,7 @@ all:
 	bibtex ${FILE}
 	pdflatex ${FLAGS} ${FILE}
 	pdflatex ${FLAGS} ${FILE}
-	
+
 pack:
 	rm -rf ${FILE}
 	mkdir ${FILE}
