@@ -19,10 +19,14 @@ paper1:
    hid:
    - 235
    title: Big Data in Recommendation System
-   abstract: Paper 1 will be focused on how the company recommend their products and services to their customers based on the data about customers' preferences. 
+   abstract: >
+      Paper 1 will be focused on how the company recommend their
+      products and services to their customers based on the data about
+      customers' preferences.
    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf 
    type: Word
    status: in progress
+   chapter: Buisiness
 ```
    
 # Paper 2
