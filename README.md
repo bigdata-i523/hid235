@@ -24,8 +24,8 @@ paper1:
       products and services to their customers based on the data about
       customers' preferences.
    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf 
-   type: Word
-   status: in progress
+   type: Latex
+   status: Done
    chapter: Buisiness
 ```
    
