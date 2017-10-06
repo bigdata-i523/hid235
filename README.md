@@ -29,8 +29,8 @@ paper1:
       customers' preferences.
    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf 
    type: latex
-   status: Done
-   chapter: Buisiness
+   status: 100%
+   chapter: Business
 ```
    
 # Paper 2
