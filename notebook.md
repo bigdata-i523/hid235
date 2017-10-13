@@ -14,14 +14,25 @@
 
 # Theory
 
-* 08/22/17 - 08/23/17 Read and watched all videso in the Theory Introduction section
+* 09/06/17 - 09/09/17 Read and watched all videos in the Theory Introduction section
+* 09/16/17 – 09/21/17 Read and watched all videos in the Overview of Data Science section
+* 10/15/17 - 10/21/17 Will read and watch all videos in the Big Data Use Cases Survey section
+* 10/22/17 - 10/28/17 Will read and watch all videos in the Health Informatics Case Study and e-Commerce and LifeStyle Case Study section
+* 10/29/17 - 11/04/17 Will read and watch all videos in the Physics Case Study and Radar Case Study section
+* 11/05/17 - 11/11/17 Will read and watch all videos in the Sensors Case Study and Sports Case Study section
+* 11/12/17 - 11/18/17 Will read and watch all videos in the Web Search and Text Mining section
 
 # Practice
 
-* 08/24/17 Bought Raspberry PI
-* 08/25/17 Enabled Python 2 and 3 via pyenv on OSX
+* 08/25/17 Read sections on Linux Shell and Virtual Box Installation and Instructions
+* 08/29/17 Installed Python 2 and 3 via pyenv on Windows Virtual Box
+* 09/14/17 Read section on Python 
+* 09/19/17 Read sections on Python, Code Management and IoT
+* 10/02/17 Implemented mqtt
 
 # Writing
 
 * 08/26/17 Installed and Learned aquamacs
-* 00/01/17 Installed and Learned jabref
+* 09/01/17 Installed and Learned jabref
+* 09/11/17 Read sections on LaTex and Bibliography Management
+* 09/18/17 Learn overlef
