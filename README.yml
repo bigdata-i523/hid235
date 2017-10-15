@@ -1,0 +1,39 @@
+---
+owner:
+    hid: 235
+    name: Wu, Yujie
+    url: https://github.com/bigdata-i523/hid235
+paper1:
+    abstract: 'Paper 1 will be focused on how the company recommend their products
+        and services to their customers based on the data about customers'' preferences.
+
+        '
+    author:
+        - Yujie Wu
+    chapter: Business
+    hid:
+        - 235
+    status: 100%
+    title: Big Data in Recommendation System
+    type: latex
+    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf
+paper2:
+    abstract: Paper 1 will be focused on how the company recommend their products
+        and services to their customers based on the data about customers' preferences.
+    author:
+        - Yujie Wu
+    hid:
+        - 235
+    status: in progress
+    title: Big Data
+    type: Word
+    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf
+project:
+    abstract: This paper showcases tis and that and the other
+    author:
+        - Yujie Wu
+    hid:
+        - 235
+    title: Benchmarking a BigData Docker deployment
+    type: project
+    url: https://github.com/bigdata-i523/hid235/project/report.pdf
