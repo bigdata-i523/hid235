@@ -12,11 +12,10 @@ paper1:
     chapter: Business
     hid:
         - 235
-    status: 100%
+    status: 100%, 10/27/2017
     title: Big Data in Recommendation System
     type: latex
     url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf
-    finish date: 10/27/2017
 paper2:
     abstract: >
         Paper 1 will be focused on how the company recommend their products
