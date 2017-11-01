@@ -16,24 +16,31 @@ paper1:
     title: Big Data in Recommendation System
     type: latex
     url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf
+    
 paper2:
     abstract: >
-        Paper 1 will be focused on how the company recommend their products
-        and services to their customers based on the data about customers preferences.
+        In human history, catastrophe, wars, big event led to a incredible loss of life. 
+        Historians collect the data of life and do the statistical analysis. 
+        Big data provides an insight for historians to learn humanity based on the data from the history. 
+        This paper involves the intro of some events, big data analysis, results from the big data learning. 
     author:
         - Yujie Wu
     hid:
         - 235
     status: in progress
-    title: Big Data
-    type: Word
-    url: https://github.com/bigdata-i523/hid235/paper1/paper1.pdf
+    title: Big data: An Opportunity for Historians
+    type: latex
+    url: 
+    
 project:
-    abstract: This paper showcases tis and that and the other
+    abstract: >
+        House price changes dynamically and it costs human power to evaluate the price. 
+        This project uses a large data set obtained from house dealings and algorithms 
+        to predict if house price is reasonable. 
     author:
         - Yujie Wu
     hid:
         - 235
-    title: Benchmarking a BigData Docker deployment
+    title: Big Data analytics in predict house price
     type: project
-    url: https://github.com/bigdata-i523/hid235/project/report.pdf
+    url: 
