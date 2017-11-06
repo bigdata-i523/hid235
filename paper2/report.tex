@@ -1,143 +1,117 @@
 \documentclass[sigconf]{acmart}
 
-\input{format/i523}
+\usepackage{hyperref}
 
+\usepackage{endfloat}
+\renewcommand{\efloatseparator}{\mbox{}} % no new page between figures
+
+\usepackage{booktabs} % For formal tables
+
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+\usepackage{indentfirst}
+ 
 \begin{document}
-\title{Big Data for Edge Computing}
+\title{Big data: An Opportunity for Historians}
 
 
-\author{Ben Trovato}
-\orcid{1234-5678-9012}
+\author{Yujie Wu}
 \affiliation{%
-  \institution{Institute for Clarity in Documentation}
-  \streetaddress{P.O. Box 1212}
-  \city{Dublin} 
-  \state{Ohio} 
-  \postcode{43017-6221}
-}
-\email{trovato@corporation.com}
-
-\author{G.K.M. Tobin}
-\affiliation{%
-  \institution{Institute for Clarity in Documentation}
-  \streetaddress{P.O. Box 1212}
-  \city{Dublin} 
-  \state{Ohio} 
-  \postcode{43017-6221}
-}
-\email{webmaster@marysville-ohio.com}
-
-\author{Gregor von Laszewski}
-\affiliation{%
-  \institution{Indiana University}
-  \streetaddress{Smith Research Center}
+  \institution{Indiana University Bloomington}
   \city{Bloomington} 
-  \state{IN} 
-  \postcode{47408}
-  \country{USA}}
-\email{laszewski@gmail.com}
+  \state{Indiana} 
+  \postcode{47401}
+}
+\email{yujiwu@iu.edu}
+
 
 
 % The default list of authors is too long for headers}
-\renewcommand{\shortauthors}{G. v. Laszewski}
+\renewcommand{\shortauthors}{B. Trovato et al.}
 
 
 \begin{abstract}
-This paper provides a sample of a \LaTeX\ document which conforms,
-somewhat loosely, to the formatting guidelines for
-ACM SIG Proceedings.
+\large  In human history, catastrophe, wars, big event led to a incredible loss of life. Historians collected the data of life but ignored to do the statistical analysis due to their non-statistical background. In this new age, Big data provides an insight for historians to learn humanity based on the data from the history. This paper involves the brief introduction of historical events, big data analysis based on the historical information, and the results from the big data learning.  
 \end{abstract}
 
-\keywords{Big Data, Edge Computing i523}
-
+\keywords{\large i523, HID235, history, Titanic, ID3}
 
 \maketitle
 
-
-
 \section{Introduction}
+\large With the rapid development of information technology, historians now enter the age of big data. Big data refers to a tremendous 
+amount of information that produced by human and nonhuman activities in the past. The scale of big data is large enough that it is 
+impossible for individuals to collect and preprocess the data. Hence, history which is derived from human engagement with the past must
+have some affinity with big data and the computer technology it represents\cite{C1}. Such instinctive property of big data provides an
+absolutely new perspective for historians to study and re-evaluate the history. 
 
-Put here an introduction about your topic. 
-We just need one sample refernce so the paper compiles in LaTeX so we
-put it here \cite{editor00}.
+\par 
+In this age of explosion of information, zillions of pieces information is stored on the Internet. The volume, velocity, variety, value, veracity of data are the treasure for historian to mine. But in most of time, data is neither straightforward substance nor transparent material for historians to squeeze the interesting information since they are not well-organized into a meaningful format that let the algorithm analyze them for answering the questions that historians are interested in\cite{C1}. Processing meaningless data into a coherent argument is not an easy job. Furthermore, using proper infrastructure and algorithm is difficult as well. As a historian, big data is an opportunity but also a big obstacle for the future researches.  
 
-\section{figures}
+\section{Preprocess data}
+ 
+\par
+Preprocessing data is a big challenge for historians. Here is an example to illustrate a proper approach to preprocess history-relative data. The data to be introduced in this paper is from the world-famous tragedy -- Titanic. Titanic was one of three ``Olympic Class'' liners which were an incredible feat of engineering and ambition in their age. Titanic was the largest, fastest, and most luxurious liner. Its maiden voyage was from Southampton to New York with a lot of people on board including millionaires, movie stars, teachers and labors who were looking for a better life in United States. However, it struck an iceberg and sank in Atlantic Ocean five days after the beginning of its journey. The collision tore a series of holes along side of the hull. The sea water came into Titanic and less than three hours later, Titanic sank down about 2 miles to the bottom of the Atlantic ocean. Overall 1502 out of 2224 on broad passengers and crew lost their lives in this shocking tragedy\cite{C2}. 
 
-In Figure \ref{f:fly} we show a fly. Please note that because we use
-just columwidth that the size of the figure will change to the
-columnwidth of the paper once we change the layout to final. CHnaging
-the layout to final should not be done by you. All figures will be
-listed at the end.
+\par
+This tragedy attracted the attention of international community. People were wondering the reasons that how such technique marvel encountered this tragedy. One of the well-known reasons that the sinking of Titanic led to such loss of life was that there were not enough lifeboats for the passengers and crew\cite{C3}. Another reason was that on the night of Sunday April 14 1912, the Atlantic ocean was flat calm, the sky clear and moonless, and the temperature was freezing-cold\cite{C2}. The weather condition was very difficult for captain and other crew to detect an iceberg. Therefore, such weather condition explained the reason why the alarm of iceberg in front was made only 40 seconds before Titanic crashed the iceberg. It was impossible for such big mechanical monster to provide a stop response. Unfortunately, Titanic accelerated towards to iceberg directly and tore a series of large holes along side of the hull.  
 
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/fly.pdf}
-  \caption{Example caption}\label{f:fly}
-\end{figure}
+\par
+The information from the passengers and crew on board was collected later on for historians to study one more interesting field that what sorts of people were possibly to survive. 
 
-When copying the example, please do not check in the images from the
-examples into your images directory as you will not need them for your
-paper. Instead use images that you like to include. If you do not have
-any images, do not dreate the images folder.
+\par
+The description of the data used to study for historians in this example is as follows. The data set has 12 attributes (columns) shown in the following table\cite{C3}. 
 
-\section{Tables}
-
-In case you need to create tables, you can do this with online tools
-(if you do not mind sharing your data) such as
-\url{https://www.tablesgenerator.com/} or other such tools (please
-google for them). They even allow you to manage tables as CSV.
-
-or generate them by hand while using the provided template in Table\ref{t:mytable}. Not ethat
-the caption is before the tabular environment.
-
-\begin{table}[htb]
-\centering
-\caption{My caption}
-\label{t:mytabble}
-\begin{tabular}{lll}
-1 & 2 & 3 \\
+\begin{center}
+\begin{tabular}{c|c}
 \hline
-4 & 5 & 6 \\
-7 & 8 & 9
+Variable & Definition\\
+\hline
+survival & Survival\\
+pclass & Ticket class\\
+PassengerId & ID of each passenger \\
+sex & gender   \\
+Age & Age in years   \\
+ticket & Ticket number  \\
+sibsp & number of siblings / spouses aboard the Titanic  \\
+\hline
 \end{tabular}
-\end{table}
+\end{center}
 
-\section{Long example}
+\begin{center}
+\begin{tabular}{c|c}
+\hline
+Variable & Definition\\
+\hline
+parch & number of parents / children aboard the Titanic   \\
+name & name of each passenger \\
+fare &  Passenger fare	  \\
+cabin &  Cabin number   \\
+embarked &  Port of Embarkation \\
+\hline
+\end{tabular}
+\end{center}
 
-If you like to see a more elaborate example, please look at
-report-long.tex. 
+\par 
+Survival attribute for this example will be the label for classification. It has two values 0 for not survived and 1 for survived. Pclass attribute has 3 possible values 1 for upper class, 2 for middle class, and 3 for lower class. Age attribute is fractional if less than 1. If the age of a passenger is estimated, is it in the form of ``xx.5''. Sibling defined in this data set is brother, sister, stepbrother, and stepsister. Spouse defined in this data set is husband and wife. Parent defined in this data set contains mother and father. Child in this data set includes daughter, son, stepdaughter, and stepson\cite{C3}. 
+
+\par 
+After defining the data value and storing the data in a algorithm-readable format, historians should process the missing values and noise which is the most significant step before analyzing or mining the data by an algorithm. Noise usually refers to non-systematic error. Such error is not caused by the algorithm or the classifier system. It is from the training dataset. For example, two tuples has the identical values in all attributes, but their label is different. It causes the inadequate attributes. To deal with the noise, the historians could delete such tuples. 
+
+\par 
+If there is missing value in an attribute, the mean value is usually used as the substitution. However there is a more technological approach to fill in an unknown value by using the information provided by context. For example, the historians could use a Bayesian formalism to figure out the probability of a possible value say $A_i$ in attribute A. In addition, decision tree approach is another way to determine the missing value. Assume $C_s$ is a subset of C consisting of an attribute and the label. the historians could construct a decision tree based on this subset and predict the missing value using the tree model.
+
+\section{Analysis and implementation of ID3 algorithm}
+The label (survival attribute) of the data set is binary value. All the attributes contain discretely numerical value. Therefore, ID3 algorithm is the best algorithm to be employed for mining and analyzing the data set. ID3 algorithm is well known as Iterative Dichotomiser 3 algorithm invented by Ross Quinlan. 
 
 \section{Conclusion}
-
-Put here an conclusion. Conlcusions and abstracts must not have any
-citations in the section.
-
-
-\begin{acks}
-
-  The authors would like to thank Dr. Gregor von Laszewski for his
-  support and suggestions to write this paper.
-
-\end{acks}
+This paper ...
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{report} 
 
-\appendix
-
-We include an appendix with common issues that we see when students
-submit papers. One particular important issue is not to use the
-underscore in bibtex labels. Sharelatex allows this, but the
-proceedings script we have does not allow this.
-
-When you submit the paper you need to address each of the items in the
-issues.tex file and verify that you have done them. Please do this
-only at the end once you have finished writing the paper. To d this
-cange TODO with DONE. However if you check something on with DONE, but
-we find you actually have not executed it correcty, you will receive
-point deductions. Thus it is important to do this correctly and not
-just 5 minutes before the deadline. It is better to do a late
-submission than doing the check in haste. 
-
-\input{issues}
-
 \end{document}
+
+
+
