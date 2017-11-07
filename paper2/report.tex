@@ -103,15 +103,27 @@ After defining the data value and storing the data in a algorithm-readable forma
 If there is missing value in an attribute, the mean value is usually used as the substitution. However there is a more technological approach to fill in an unknown value by using the information provided by context. For example, the historians could use a Bayesian formalism to figure out the probability of a possible value say $A_i$ in attribute A. In addition, decision tree approach is another way to determine the missing value. Assume $C_s$ is a subset of C consisting of an attribute and the label. the historians could construct a decision tree based on this subset and predict the missing value using the tree model.
 
 \section{Analysis and implementation of ID3 algorithm}
-The label (survival attribute) of the data set is binary value. All the attributes contain discretely numerical value. Therefore, ID3 algorithm is the best algorithm to be employed for mining and analyzing the data set. ID3 algorithm is well known as Iterative Dichotomiser 3 algorithm invented by Ross Quinlan. 
+The label (survival attribute) of the dataset is binary value. All the attributes contain discretely numerical value. Therefore, ID3 algorithm is the best algorithm to be employed for mining and analyzing the dataset. 
+
+\par 
+ID3 algorithm is well known as Iterative Dichotomiser 3 algorithm invented by Ross Quinlan. It is used to generate a decision tree recursively from a dataset. Then, the output decision tree could be used as a model to predict (classify) any input instance as which class or group it belongs to. The ID3 algorithm starts at the original dataset as the root node. Then in the iteration (recursion), the algorithm calculates the entropy of the label and the information gain of each unused attribute. The algorithm selects the attribute which has the greatest information gain and separates the dataset into multiple subset according to possible value of this chosen attribute. Each subset of the original dataset is an inner node in the final decision tree. ID3 algorithm continues to call itself (recursion) until two conditions are satisfied. First condition is that every element in the subset belongs to the same class, the subset denoted as the leaf of the decision tree is marked as the name of that class. Second condition is that there are no more attributes to be selected, but the examples still do not belong to the same class, then the node is turned into a leaf and labelled with the most common class of the examples in the subset\cite{C4}. 
+
+\par
+The concept entropy this paper discussed above is derived from 
+Physics, which is a measure of how much chaos or uncertainty of the system. In big data, it refers to the amount of uncertainty of the given dataset. Entropy is usually represented by H(S). It could be calculated from the probability of each element in the label of a dataset. 
+$$H(S) = \sum_{ x \in X } -p(x)log_2p(x)$$
+Where S is the current dataset for which entropy is being calculated, capitalized X is the set of classes in the label of the dataset, and $p(x)$ is the probability of each element in class $x$. 
+Information gain is a concept to measure how much more information we could acquire from the dataset if we analyze the data one further step. The greater information gain is, the larger uncertainty or the more information we could obtain from the dataset if mining the data more. Information gain is usually denoted by $IG(A;S)$, where A is an attribute and S is the current dataset. It could be calculated from the following formula.
+$$IG(A;S)= H(S) - H(A|S)$$
+$$IG(A;S)= H(S) - \sum_{a \in A}\frac{S_a}{S} H(S_a)$$
+where $H(S)$ is the entropy of dataset S, a is an element in attribute A, $S_a$ is a collection of tuples whose A attribute value is a. 
 
 \section{Conclusion}
-This paper ...
+This paper introduces the Titanic story and how historians preprocess the data. The ID3 algorithm is also introduced for historians to employ on their research. As a historian, big data is an opportunity but also a big obstacle for the future researches. But at least, it is a good start in big data for all historians.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{report} 
 
 \end{document}
-
 
 
