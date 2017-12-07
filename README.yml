@@ -32,7 +32,7 @@ paper2:
     title: "Big data: An Opportunity for Historians"
     type: latex
     url: https://github.com/bigdata-i523/hid235/paper2/report.tex
-    
+    chapter: Lifestyle
 project:
     abstract: >
         House price changes dynamically and it costs human power to evaluate the price. 
