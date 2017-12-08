@@ -1,467 +1,206 @@
-% Default to the notebook output style
+\documentclass[sigconf]{acmart}
 
-    
+\usepackage{listings}
+\usepackage{color}
+% \usepackage[parfill]{parskip}
 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
 
-% Inherit from the specified cell style.
-\documentclass[11pt]{article}
-    
-    \usepackage[T1]{fontenc}
-    % Nicer default font (+ math font) than Computer Modern for most use cases
-    \usepackage{mathpazo}
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
 
-    % Basic figure setup, for now with no caption control since it's done
-    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
-    \usepackage{graphicx}
-    % We will generate all images so they have a width \maxwidth. This means
-    % that they will get their normal width if they fit onto the page, but
-    % are scaled down if they would overflow the margins.
-    \makeatletter
-    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
-    \else\Gin@nat@width\fi}
-    \makeatother
-    \let\Oldincludegraphics\includegraphics
-    % Set max figure width to be 80% of text width, for now hardcoded.
-    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
-    % Ensure that by default, figures have no caption (until we provide a
-    % proper Figure object with a Caption API and a way to capture that
-    % in the conversion process - todo).
-    \usepackage{caption}
-    \DeclareCaptionLabelFormat{nolabel}{}
-    \captionsetup{labelformat=nolabel}
+\def\bZ{\mathbb{Z}}
+\def\bN{\mathbb{N}}
+\def\bR{\mathbb{R}}
+\def\bC{\mathbb{C}}
+\def\bQ{\mathbb{Q}}
+\usepackage{hyperref}
 
-    \usepackage{adjustbox} % Used to constrain images to a maximum size 
-    \usepackage{xcolor} % Allow colors to be defined
-    \usepackage{enumerate} % Needed for markdown enumerations to work
-    \usepackage{geometry} % Used to adjust the document margins
-    \usepackage{amsmath} % Equations
-    \usepackage{amssymb} % Equations
-    \usepackage{textcomp} % defines textquotesingle
-    % Hack from http://tex.stackexchange.com/a/47451/13684:
-    \AtBeginDocument{%
-        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
-    }
-    \usepackage{upquote} % Upright quotes for verbatim code
-    \usepackage{eurosym} % defines \euro
-    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
-    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
-    \usepackage{fancyvrb} % verbatim replacement that allows latex
-    \usepackage{grffile} % extends the file name processing of package graphics 
-                         % to support a larger range 
-    % The hyperref package gives us a pdf with properly built
-    % internal navigation ('pdf bookmarks' for the table of contents,
-    % internal cross-reference links, web links for URLs, etc.)
-    \usepackage{hyperref}
-    \usepackage{longtable} % longtable support required by pandoc >1.10
-    \usepackage{booktabs}  % table support for pandoc > 1.12.2
-    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
-    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
-                                % normalem makes italics be italics, not underlines
-    
+\usepackage{endfloat}
+\renewcommand{\efloatseparator}{\mbox{}} % no new page between figures
 
-    
-    
-    % Colors for the hyperref package
-    \definecolor{urlcolor}{rgb}{0,.145,.698}
-    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
-    \definecolor{citecolor}{rgb}{.12,.54,.11}
+\usepackage{booktabs} % For formal tables
 
-    % ANSI colors
-    \definecolor{ansi-black}{HTML}{3E424D}
-    \definecolor{ansi-black-intense}{HTML}{282C36}
-    \definecolor{ansi-red}{HTML}{E75C58}
-    \definecolor{ansi-red-intense}{HTML}{B22B31}
-    \definecolor{ansi-green}{HTML}{00A250}
-    \definecolor{ansi-green-intense}{HTML}{007427}
-    \definecolor{ansi-yellow}{HTML}{DDB62B}
-    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
-    \definecolor{ansi-blue}{HTML}{208FFB}
-    \definecolor{ansi-blue-intense}{HTML}{0065CA}
-    \definecolor{ansi-magenta}{HTML}{D160C4}
-    \definecolor{ansi-magenta-intense}{HTML}{A03196}
-    \definecolor{ansi-cyan}{HTML}{60C6C8}
-    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
-    \definecolor{ansi-white}{HTML}{C5C1B4}
-    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
-
-    % commands and environments needed by pandoc snippets
-    % extracted from the output of `pandoc -s`
-    \providecommand{\tightlist}{%
-      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-    % Add ',fontsize=\small' for more characters per line
-    \newenvironment{Shaded}{}{}
-    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
-    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
-    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
-    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
-    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
-    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
-    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
-    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
-    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
-    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
-    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
-    \newcommand{\RegionMarkerTok}[1]{{#1}}
-    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
-    \newcommand{\NormalTok}[1]{{#1}}
-    
-    % Additional commands for more recent versions of Pandoc
-    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
-    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
-    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
-    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
-    \newcommand{\ImportTok}[1]{{#1}}
-    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
-    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
-    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
-    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
-    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
-    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
-    \newcommand{\BuiltInTok}[1]{{#1}}
-    \newcommand{\ExtensionTok}[1]{{#1}}
-    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
-    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
-    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
-    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
-    
-    
-    % Define a nice break command that doesn't care if a line doesn't already
-    % exist.
-    \def\br{\hspace*{\fill} \\* }
-    % Math Jax compatability definitions
-    \def\gt{>}
-    \def\lt{<}
-    % Document parameters
-    \title{report}
-    
-    
-    
-
-    % Pygments definitions
-    
-\makeatletter
-\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
-    \let\PY@ul=\relax \let\PY@tc=\relax%
-    \let\PY@bc=\relax \let\PY@ff=\relax}
-\def\PY@tok#1{\csname PY@tok@#1\endcsname}
-\def\PY@toks#1+{\ifx\relax#1\empty\else%
-    \PY@tok{#1}\expandafter\PY@toks\fi}
-\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
-    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
-\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
-
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-
-\def\PYZbs{\char`\\}
-\def\PYZus{\char`\_}
-\def\PYZob{\char`\{}
-\def\PYZcb{\char`\}}
-\def\PYZca{\char`\^}
-\def\PYZam{\char`\&}
-\def\PYZlt{\char`\<}
-\def\PYZgt{\char`\>}
-\def\PYZsh{\char`\#}
-\def\PYZpc{\char`\%}
-\def\PYZdl{\char`\$}
-\def\PYZhy{\char`\-}
-\def\PYZsq{\char`\'}
-\def\PYZdq{\char`\"}
-\def\PYZti{\char`\~}
-% for compatibility with earlier versions
-\def\PYZat{@}
-\def\PYZlb{[}
-\def\PYZrb{]}
-\makeatother
-
-
-    % Exact colors from NB
-    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
-    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
-
-
-
-    
-    % Prevent overflowing lines due to hard-to-break entities
-    \sloppy 
-    % Setup hyperref package
-    \hypersetup{
-      breaklinks=true,  % so long urls are correctly broken across lines
-      colorlinks=true,
-      urlcolor=urlcolor,
-      linkcolor=linkcolor,
-      citecolor=citecolor,
-      }
-    % Slightly bigger margins than the latex defaults
-    
-    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
-    
-    
-
-    \begin{document}
-    
-    \title{Big Data analytics in predict house price}
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+\usepackage{indentfirst}
+ 
+\begin{document}
+\title{Big Data analytics in predict house price}
 
 
 \author{Yujie Wu}
-    \maketitle
-    
-    
-
-    
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
-        \PY{o}{\PYZpc{}} \PY{n}{matplotlib} \PY{n}{inline}
-        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{accuracy\PYZus{}score}
-\end{Verbatim}
+\affiliation{%
+  \institution{Indiana University Bloomington}
+  \city{Bloomington} 
+  \state{Indiana} 
+  \postcode{47401}
+}
+\email{yujiwu@iu.edu}
 
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{RandomForestClassifier}
-        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
-        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{LabelEncoder}
-        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-        \PY{n}{df}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C:}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Users}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Yujie}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{s VMware}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Desktop}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{training\PYZus{}data.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
-\end{Verbatim}
+
+% The default list of authors is too long for headers}
+\renewcommand{\shortauthors}{B. Trovato et al.}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:}    Id  MSSubClass  LotArea  OverallQual  OverallCond  YearBuilt  YearRemodAdd  \textbackslash{}
-        0   1          60     8450            7            5       2003          2003   
-        1   2          20     9600            6            8       1976          1976   
-        2   3          60    11250            7            5       2001          2002   
-        3   4          70     9550            7            5       1915          1970   
-        4   5          60    14260            8            5       2000          2000   
-        
-           MasVnrArea  BsmtFinSF1  BsmtFinSF2    {\ldots}      WoodDeckSF  OpenPorchSF  \textbackslash{}
-        0         196         706           0    {\ldots}               0           61   
-        1           0         978           0    {\ldots}             298            0   
-        2         162         486           0    {\ldots}               0           42   
-        3           0         216           0    {\ldots}               0           35   
-        4         350         655           0    {\ldots}             192           84   
-        
-           EnclosedPorch  3SsnPorch  ScreenPorch  PoolArea  MiscVal  MoSold  YrSold  \textbackslash{}
-        0              0          0            0         0        0       2    2008   
-        1              0          0            0         0        0       5    2007   
-        2              0          0            0         0        0       9    2008   
-        3            272          0            0         0        0       2    2006   
-        4              0          0            0         0        0      12    2008   
-        
-           SalePrice  
-        0     208500  
-        1     181500  
-        2     223500  
-        3     140000  
-        4     250000  
-        
-        [5 rows x 35 columns]
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} clean data and show}
-         \PY{k}{del} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
-\end{Verbatim}
+\begin{abstract}
+\large  House price changes dynamically and it costs human power to evaluate the price. This project uses a large data set obtained from house dealings and algorithms to predict if house price is reasonable.
+\end{abstract}
+
+\keywords{\large i523, HID235, House Price, Logistic Regression, linear Regression}
+
+\maketitle
+
+\section{Introduction}
+\large Asking a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad. But this playground competition's dataset proves that much more influences price negotiations than the number of bedrooms or a white-picket fence. With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa, this project is aimed to overcome the challenges of predicting the final price of each home.
+
+\section{Linear regression}
+\par In statistics, linear regression is a linear approach for modeling the relationship between a scalar dependent variable y and one or more explanatory variables (or independent variables) denoted X. The case of one explanatory variable is called simple linear regression. For more than one explanatory variable, the process is called multiple linear regression.
+
+In linear regression, the relationships are modeled using linear predictor functions whose unknown model parameters are estimated from the data. Such models are called linear models. Most commonly, the conditional mean of y given the value of X is assumed to be an affine function of X; less commonly, the median or some other quantile of the conditional distribution of y given X is expressed as a linear function of X. Like all forms of regression analysis, linear regression focuses on the conditional probability distribution of y given X, rather than on the joint probability distribution of y and X, which is the domain of multivariate analysis.
+
+Linear regression was the first type of regression analysis to be studied rigorously, and to be used extensively in practical applications. This is because models which depend linearly on their unknown parameters are easier to fit than models which are non-linearly related to their parameters and because the statistical properties of the resulting estimators are easier to determine.
+
+\section{Logistic regression}
+\par In statistics, logistic regression, or logit regression, or logit model is a regression model where the dependent variable (DV) is categorical. This article covers the case of a binary dependent variable that is, where the output can take only two values, "0" and "1", which represent outcomes such as pass/fail, win/lose, alive/dead or healthy/sick. Cases where the dependent variable has more than two outcome categories may be analyzed in multinomial logistic regression, or, if the multiple categories are ordered, in ordinal logistic regression. In the terminology of economics, logistic regression is an example of a qualitative response/discrete choice model.
+
+Logistic regression was developed by statistician David Cox in 1958. The binary logistic model is used to estimate the probability of a binary response based on one or more predictor (or independent) variables (features). It allows one to say that the presence of a risk factor increases the odds of a given outcome by a specific factor.
+
+Logistic regression is used in various fields, including machine learning, most medical fields, and social sciences. For example, the Trauma and Injury Severity Score (TRISS), which is widely used to predict mortality in injured patients, was originally developed by Boyd et al. using logistic regression. Many other medical scales used to assess severity of a patient have been developed using logistic regression. Logistic regression may be used to predict whether a patient has a given disease (e.g. diabetes; coronary heart disease), based on observed characteristics of the patient. Another example might be to predict whether an American voter will vote Democratic or Republican, based on age, income, sex, race, state of residence, votes in previous elections, etc. The technique can also be used in engineering, especially for predicting the probability of failure of a given process, system or product.It is also used in marketing applications such as prediction of a customer's propensity to purchase a product or halt a subscription, etc. In economics it can be used to predict the likelihood of a person's choosing to be in the labor force, and a business application would be to predict the likelihood of a homeowner defaulting on a mortgage. Conditional random fields, an extension of logistic regression to sequential data, are used in natural language processing.
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:}    MSSubClass MSZoning LotFrontage LotArea Street Alley LotShape LandContour  \textbackslash{}
-         0          50       RM         L70  L10517   Pave  None      Reg         Lvl   
-         1          20       RL         L70  L10517   Pave  None      IR1         Lvl   
-         2          20       RL         L70  L10517   Pave  None      Reg         Lvl   
-         3          20       RL         G70  L10517   Pave  None      Reg         Lvl   
-         4          20       RL         G70  L10517   Pave  None      IR1         Lvl   
-         
-           Utilities LotConfig     {\ldots}      GarageCars GarageQual GarageCond  \textbackslash{}
-         0    AllPub    Inside     {\ldots}               2         Fa         TA   
-         1    AllPub    Inside     {\ldots}               1         TA         TA   
-         2    AllPub    Corner     {\ldots}               2         TA         TA   
-         3    AllPub    Inside     {\ldots}               2         TA         TA   
-         4    AllPub    Inside     {\ldots}               2         TA         TA   
-         
-           PavedDrive PoolArea PoolQC  Fence  SaleType  SaleCondition binSalePrice  
-         0          Y        N   None   None        WD        Abnorml            N  
-         1          Y        N   None  MnPrv        WD         Normal            N  
-         2          Y        N   None   None        WD         Normal            N  
-         3          Y        N   None   GdWo        WD        Abnorml            N  
-         4          Y        N   None   None        WD         Normal            Y  
-         
-         [5 rows x 58 columns]
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}50}]:} \PY{c+c1}{\PYZsh{} show the distribution of a column}
-         \PY{n}{col} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SalePrice}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} 
-         \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{col}\PY{p}{)}
-         
-         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{} show the distribution of another column}
-         \PY{n}{col} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MSSubClass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} 
-         \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{col}\PY{p}{)}
-         
-         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
-\end{Verbatim}
+\section{Experiment}
+\begin{lstlisting}
+In [1]: import matplotlib.pyplot as plt
+        % matplotlib inline
+        from sklearn.metrics import accuracy_score
+In [2]: from sklearn.ensemble import RandomForestClassifier
+        import pandas as pd
+        from sklearn.preprocessing import LabelEncoder
+        import numpy as np
+        df=pd.read_csv('C:\\Users\\Yujie\'s
+        VMware\\Desktop\\training_data.csv')
+        df.head()
+\end{lstlisting}
+\includegraphics[width=0.95\columnwidth]{3}
+\\
+\includegraphics[width=0.95\columnwidth]{4}
 
+\begin{lstlisting}
+# clean data and show del df['error']
+Out[26]:
+df.head()
 
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_0.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_1.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \subsubsection{Splitting into train and
-test}\label{splitting-into-train-and-test}
+# clean data and show del df['error']
+Out[26]:
+df.head()
+\end{lstlisting}
+\includegraphics[width=0.95\columnwidth]{1}
+\\
+\includegraphics[width=0.95\columnwidth]{2}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{X} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MSSubClass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LotArea}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{OverallQual}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{OverallCond}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YearBuilt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YearRemodAdd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MasVnrArea}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BsmtFinSF1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BsmtFinSF2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{WoodDeckSF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{OpenPorchSF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EnclosedPorch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3SsnPorch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ScreenPorch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PoolArea}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MiscVal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MoSold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YrSold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
-        \PY{n}{y} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SalePrice}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
-        \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
-\end{Verbatim}
+\begin{lstlisting}
+In [50]: # show the distribution of a column col = list(df['SalePrice'])
+         plt.hist(col)
+         plt.show()
+         # show the distribution of another column
+         col = list(df['MSSubClass'])
+         plt.hist(col)
+plt.show()
+\end{lstlisting}
 
+\includegraphics[width=0.95\columnwidth]{output_3_0.png}
+\\
+\includegraphics[width=0.95\columnwidth]{output_3_1.png}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X\PYZus{}train: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-        \PY{n+nb}{print}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
-        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y\PYZus{}train: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-        \PY{n+nb}{print}\PY{p}{(}\PY{n}{y\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
-        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X\PYZus{}test: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-        \PY{n+nb}{print}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
-        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y\PYZus{}test: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-        \PY{n+nb}{print}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
-\end{Verbatim}
+\begin{lstlisting}
+0.0.1 Splitting into train and test
+In [6]: X = df[['MSSubClass','LotArea','OverallQual','OverallCond','YearBuilt', 'YearRemodAdd','
+        y = df['SalePrice']
+3
+from sklearn.model_selection import train_test_split
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=3)
+In [7]: print("X_train: ")
+        print(X_train.shape)
+        print("y_train: ")
+        print(y_train.shape)
+        print("X_test: ")
+        print(X_test.shape)
+        print("y_test: ")
+        print(y_test.shape)
+\end{lstlisting}
 
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-X\_train: 
+\begin{lstlisting}
+X_train:
 (1168, 18)
-y\_train: 
+y_train:
 (1168,)
-X\_test: 
+X_test:
 (292, 18)
-y\_test: 
+y_test:
 (292,)
+\end{lstlisting}
 
-    \end{Verbatim}
-
-    \subsubsection{Using Linear Regression}\label{using-linear-regression}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}53}]:} \PY{c+c1}{\PYZsh{} import model}
-         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LinearRegression}
-         
-         \PY{c+c1}{\PYZsh{} instantiate}
-         \PY{n}{linreg} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{} fit the model to the training data (learn the coefficients)}
-         \PY{n}{linreg}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
-\end{Verbatim}
+\begin{lstlisting}
+0.0.2 Using Linear Regression
+In [53]: # import model
+from sklearn.linear_model import LinearRegression
+         # instantiate
+linreg = LinearRegression()
+# fit the model to the training data (learn the coefficients)
+         linreg.fit(X_train, y_train)
+Out[53]: LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}53}]:} LinearRegression(copy\_X=True, fit\_intercept=True, n\_jobs=1, normalize=False)
-\end{Verbatim}
-            
-    \subsubsection{show the coefficients of the linear regression
-model}\label{show-the-coefficients-of-the-linear-regression-model}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}54}]:} \PY{c+c1}{\PYZsh{} print the intercept and coefficients}
-         \PY{n+nb}{print}\PY{p}{(}\PY{n}{linreg}\PY{o}{.}\PY{n}{intercept\PYZus{}}\PY{p}{)}
-         \PY{n+nb}{print}\PY{p}{(}\PY{n}{linreg}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{)}
-\end{Verbatim}
+\end{lstlisting}
 
 
-    \begin{Verbatim}[commandchars=\\\{\}]
+\begin{lstlisting}
+0.0.3 show the coefficients of the linear regression model
+In [54]: # print the intercept and coefficients print(linreg.intercept_)
+print(linreg.coef_)
 1624810.78299
-[ -1.32598253e+02   1.17264859e+00   3.27974313e+04   3.52017131e+02
-   7.42385752e+01   3.87166477e+02   6.87797648e+01   3.05508150e+01
-   4.81195345e+00   3.94460800e+01   8.24586253e+01   2.55083195e+01
-   3.67581004e+01   6.78306474e+01   1.90173648e+02  -2.30935682e+00
-  -7.58643734e+02  -1.29045399e+03]
+[ -1.32598253e+02
+   7.42385752e+01
+   4.81195345e+00
+1.17264859e+00
+3.87166477e+02
+3.94460800e+01
+3.27974313e+04
+6.87797648e+01
+8.24586253e+01
+3.52017131e+02
+3.05508150e+01
+2.55083195e+01
+ 3.67581004e+01   
+ 6.78306474e+01   
+ 1.90173648e+02 
+ -2.30935682e+00
+-7.58643734e+02  
+-1.29045399e+03]
+\end{lstlisting}
 
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}57}]:} \PY{c+c1}{\PYZsh{} pair the feature names with the coefficients}
-         \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{linreg}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}57}]:} [('MSSubClass', -132.59825288297418),
+\begin{lstlisting}
+In [57]: # pair the feature names with the coefficients list(zip(X, linreg.coef_))
+Out[57]: [('MSSubClass', -132.59825288297418),
           ('LotArea', 1.1726485927894912),
           ('OverallQual', 32797.431340275551),
           ('OverallCond', 352.01713092259615),
@@ -479,18 +218,14 @@ model}\label{show-the-coefficients-of-the-linear-regression-model}
           ('MiscVal', -2.309356818373999),
           ('MoSold', -758.64373443570901),
           ('YrSold', -1290.4539903809468)]
-\end{Verbatim}
-            
-    \subsubsection{Make Prediction}\label{make-prediction}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}58}]:} \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{linreg}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
-         \PY{n+nb}{print}\PY{p}{(}\PY{n}{y\PYZus{}pred}\PY{p}{)}
-\end{Verbatim}
+\end{lstlisting}
 
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-[  93201.65287675  142554.76960023  207127.40186274  129212.10104713
+\begin{lstlisting}
+0.0.4 Make Prediction
+In [58]: y_pred = linreg.predict(X_test)
+         print(y_pred)
+         [  93201.65287675  142554.76960023  207127.40186274  129212.10104713
   284603.13460876   65916.12615103  200722.35383783  169593.14341713
   138022.19789723  138387.20437863  143561.19507458  150824.4043784
   141397.06769187  242451.92943507  294242.12637714  155754.66681213
@@ -511,95 +246,82 @@ model}\label{show-the-coefficients-of-the-linear-regression-model}
   144985.53609179  223770.11250678  153958.15058402  118182.70605492
   231712.95504903  102900.49898239  154389.2668046   127207.38840213
   145004.55720471  176843.72114247  169051.0221719   148482.89114126
-  313474.32652747  152493.90863482  173352.98469532  126431.410949
-  706997.59838104  273836.15113809  408289.15199464  184268.88377474
-  176636.23715661  275235.88756875  209025.79856597  301622.54866502
-  153471.41164935  210322.3456924   140373.14967059  147240.88073756
-  179983.14477495  236775.79874229  144459.66092891  253623.49760802
-  176613.8745506   229147.89622806  185611.33497853  184942.64455848
-   68523.77301979  111428.57621911   95690.85464389  210924.92842256
-  236920.78986689  179625.99265486  146998.08010809  218710.14496723
-  128961.12389426  144822.81021683  180904.35339614  126176.27283423
-   99200.6426002   257960.86042887  200015.00187306  189350.38765334
-  161309.58475033  188509.81215872  207842.304773    133745.60572444
-  146175.12018952  311506.70403465  123810.46022005  178891.00062911
-  161368.3460505   141225.57119693  247990.6084084   134197.93148368
-  105114.81700542   66238.30229136  178481.22924629  169327.77885027
-  115722.77661632  163980.78329632  259041.24033003  263441.73011914
-  283269.97449944  291907.40480834  197028.67375584  253486.2658659
-  104257.64311109  332402.81936497  235123.35447297  117530.28281743
-  331867.34936129  166007.48240655  203642.02685762  366937.27511738
-  254191.87188157  124456.0621068    91276.03127415  115556.73782587
-  135405.78846278  218110.30607514  214268.7945742   140032.81401882
-  182040.72686091  176083.82849172  189209.9335995   116292.72416312
-  156432.52235127  204191.85524977  243977.32691289  217247.92836948
-  285376.77266393  246843.94978091  222100.61618257  167537.81203899
-  173903.04681628  161022.49525822  142938.09421832  236955.86271045
-  118908.1141022   191184.99717802  264889.79476426  125154.14702448
-  227251.47377346  237911.61180972  161841.30235331  191446.14163809
-  116625.79736531  145735.12537565  105372.79335894  316582.43267848
-  122028.63732317  290593.52200424  185714.04747969  190352.49050499
-  231514.01368592  230079.79348368  127676.13717555  211300.51925447
-  195483.82714307  192652.60353829  165237.26624796  120930.29413027
-  246160.5957099   281456.29298689  246797.10864379  119311.41048692
-  125885.59543623  237312.78172775   80648.88617473  121685.26043487
-  114935.23554672  161184.27138098  148054.27442727  131650.06362918
-  201165.65733849  296531.91858395  130462.5135931   249027.70239568
-  177623.04403208  166277.96320103   94660.31809216   72766.55532673
-  120114.744019    102331.03622172  132734.52163217  195045.15386957
-  206238.5262443   254559.77871816  103180.37264793  217595.03298126
-  200740.09709761  309978.95599912  120679.0962053   105614.64472826
-  246644.91857921  132884.29067159  333136.91588735  167381.82062275
-  160037.46133837  280268.75854488  166764.14578859  163691.73116515
-  172120.87702276   86744.64311271  159726.64897898  152045.32160112
-  148376.7717957   261196.38354104  190853.69410498  147271.05605036
-  126117.61348537  122639.71249082  227607.46595295  170013.76929953
-  136917.40993332  157131.07140997  127090.52733891  135446.00011116
-  271380.56027395  138338.59566889  233995.26083728  141733.47586868
-  138265.15523182  200673.53942787  186815.23291077  226030.65231941
-  197560.45885543  392086.99980809  199746.97825355  194749.30417935
-  122346.88308178  170839.72571199   37264.46454778  153581.22281016
-  183230.11599231  143418.12876415  170655.31440413   60936.55821163
+5
+313474.32652747  152493.90863482  173352.98469532  126431.410949
+706997.59838104  273836.15113809  408289.15199464  184268.88377474
+176636.23715661  275235.88756875  209025.79856597  301622.54866502
+153471.41164935  210322.3456924   140373.14967059  147240.88073756
+179983.14477495  236775.79874229  144459.66092891  253623.49760802
+176613.8745506   229147.89622806  185611.33497853  184942.64455848
+ 68523.77301979  111428.57621911   95690.85464389  210924.92842256
+236920.78986689  179625.99265486  146998.08010809  218710.14496723
+128961.12389426  144822.81021683  180904.35339614  126176.27283423
+ 99200.6426002   257960.86042887  200015.00187306  189350.38765334
+161309.58475033  188509.81215872  207842.304773    133745.60572444
+146175.12018952  311506.70403465  123810.46022005  178891.00062911
+161368.3460505   141225.57119693  247990.6084084   134197.93148368
+105114.81700542   66238.30229136  178481.22924629  169327.77885027
+115722.77661632  163980.78329632  259041.24033003  263441.73011914
+283269.97449944  291907.40480834  197028.67375584  253486.2658659
+104257.64311109  332402.81936497  235123.35447297  117530.28281743
+331867.34936129  166007.48240655  203642.02685762  366937.27511738
+254191.87188157  124456.0621068    91276.03127415  115556.73782587
+135405.78846278  218110.30607514  214268.7945742   140032.81401882
+182040.72686091  176083.82849172  189209.9335995   116292.72416312
+156432.52235127  204191.85524977  243977.32691289  217247.92836948
+285376.77266393  246843.94978091  222100.61618257  167537.81203899
+173903.04681628  161022.49525822  142938.09421832  236955.86271045
+118908.1141022   191184.99717802  264889.79476426  125154.14702448
+227251.47377346  237911.61180972  161841.30235331  191446.14163809
+116625.79736531  145735.12537565  105372.79335894  316582.43267848
+122028.63732317  290593.52200424  185714.04747969  190352.49050499
+231514.01368592  230079.79348368  127676.13717555  211300.51925447
+195483.82714307  192652.60353829  165237.26624796  120930.29413027
+246160.5957099   281456.29298689  246797.10864379  119311.41048692
+125885.59543623  237312.78172775   80648.88617473  121685.26043487
+114935.23554672  161184.27138098  148054.27442727  131650.06362918
+201165.65733849  296531.91858395  130462.5135931   249027.70239568
+177623.04403208  166277.96320103   94660.31809216   72766.55532673
+120114.744019    102331.03622172  132734.52163217  195045.15386957
+206238.5262443   254559.77871816  103180.37264793  217595.03298126
+200740.09709761  309978.95599912  120679.0962053   105614.64472826
+246644.91857921  132884.29067159  333136.91588735  167381.82062275
+160037.46133837  280268.75854488  166764.14578859  163691.73116515
+172120.87702276   86744.64311271  159726.64897898  152045.32160112
+148376.7717957   261196.38354104  190853.69410498  147271.05605036
+126117.61348537  122639.71249082  227607.46595295  170013.76929953
+136917.40993332  157131.07140997  127090.52733891  135446.00011116
+271380.56027395  138338.59566889  233995.26083728  141733.47586868
+138265.15523182  200673.53942787  186815.23291077  226030.65231941
+197560.45885543  392086.99980809  199746.97825355  194749.30417935
+122346.88308178  170839.72571199   37264.46454778  153581.22281016
+6
+183230.11599231  143418.12876415  170655.31440413   60936.55821163
   279635.84539619  141986.8959917   163848.54119987  130962.64226048
   194210.12078339  222988.18563234  252212.98444331  371404.24966183
   219031.5941132    63288.51714085  112594.85348706  139413.4862122 ]
+\end{lstlisting}
 
-    \end{Verbatim}
+0.0.5 Finally Check Error
+0.0.6 Here, we use Root Mean Squared Error (RMSE) which is the square root of the mean of the squared errors for error checking:
+$$\sqrt{\frac 1n\sum_{i=1}^n(y_i-\hat{y}_i)^2}$$
 
-    \subsubsection{Finally Check Error}\label{finally-check-error}
-
-    \subsubsection{Here, we use Root Mean Squared Error (RMSE) which is the
-square root of the mean of the squared errors for error
-checking:}\label{here-we-use-root-mean-squared-error-rmse-which-is-the-square-root-of-the-mean-of-the-squared-errors-for-error-checking}
-
-\[\sqrt{\frac 1n\sum_{i=1}^n(y_i-\hat{y}_i)^2}\]
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}59}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
-         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-         
-         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{mean\PYZus{}squared\PYZus{}error}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
+\begin{lstlisting}
+In [59]: from sklearn import metrics
+         import numpy as np
+         print(np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
 46554.0967726
+\end{lstlisting}
 
-    \end{Verbatim}
-
-    \subsubsection{Using logistic
-Regression}\label{using-logistic-regression}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
-        \PY{n}{logreg} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{p}{)}
-        \PY{n}{logreg}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
-        \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{logreg}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
-        \PY{n+nb}{print}\PY{p}{(}\PY{n}{y\PYZus{}pred}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
+\begin{lstlisting}
+0.0.7 Using logistic Regression
+In [8]: from sklearn.linear_model import LogisticRegression
+        logreg = LogisticRegression()
+        logreg.fit(X_train, y_train)
+        y_pred = logreg.predict(X_test)
+        print(y_pred)
+\end{lstlisting}
+\begin{lstlisting}
 [135000 139400 215000  85000 259500 108480 161750  93000 103600 129500
   80000 112000 115000 194000 171000 145000 130250 130500 151000 395192
  135000 266500 335000 135000 197000 110000 116000 135000 139000  98000
@@ -619,43 +341,55 @@ Regression}\label{using-logistic-regression}
  120500 446261 378500 135000 191000 177500  79000  80000 258000 155900
  263000 220000 378500 165000 184900 214000 128500 165500 159000 185900
  160000 146000 240000 131500 328900 239000 166000 191000  80000 118000
-  81000 325000 117500 222000 136905 202665 220000 266000 109500 244600
- 181000 159500 140000  98000 195400 184900 378500 110000 200000 278000
- 161500 135000 180500 144152 190000 114500 181134 297000 147000 143750
- 155900 142000 107500  99500 117500 116050 115000 181000 215000 203000
- 122000 138800 104900 315000 136905 169000 250000 149000 305900 149000
- 164900 229000 181000 158000 144000 125500 145000 243000 130500 250000
- 179900 158000 145000 117500 187500 145000 117000 130000 135000  99500
- 215000  89000 143000 189950 154000 145000 163000 200000 181000 264132
- 150000 289000 167000 137900  67000 145000 127500 141500 214000 151000
- 209500 118000 161500 127500 143250 230000 290000 485000 191000  85000
- 110000 173000]
+  7
+81000 325000 117500 222000 136905 202665 220000 266000 109500 244600
+181000 159500 140000  98000 195400 184900 378500 110000 200000 278000
+161500 135000 180500 144152 190000 114500 181134 297000 147000 143750
+155900 142000 107500  99500 117500 116050 115000 181000 215000 203000
+122000 138800 104900 315000 136905 169000 250000 149000 305900 149000
+164900 229000 181000 158000 144000 125500 145000 243000 130500 250000
+179900 158000 145000 117500 187500 145000 117000 130000 135000  99500
+215000  89000 143000 189950 154000 145000 163000 200000 181000 264132
+150000 289000 167000 137900  67000 145000 127500 141500 214000 151000
+209500 118000 161500 127500 143250 230000 290000 485000 191000  85000
+110000 173000]
+\end{lstlisting}
 
-    \end{Verbatim}
-
-    \subsubsection{Classification accuracy:}\label{classification-accuracy}
-
-\subsubsection{Proportion of correct
-predictions}\label{proportion-of-correct-predictions}
-
-\subsubsection{Common evaluation metric for classification
-problems}\label{common-evaluation-metric-for-classification-problems}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
-         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{accuracy\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
+\begin{lstlisting}
+Classification accuracy: 
+Proportion of correct predictions
+Common evaluation metric for classification problems
+In [10]: from sklearn import metrics
+         import numpy as np
+print(metrics.accuracy_score(y_test, y_pred))
 0.0
+\end{lstlisting}
 
-    \end{Verbatim}
+\section{Algorithm Comparison and Analytics}
+\par 
+Linear Regression is used to establish a relationship between Dependent and Independent variables, which is useful in estimating the resultant dependent variable in case independent variable change. For example, using a Linear Regression, the relationship between Rain (R) and Umbrella Sales (U) is found to be - U = 2R + 5000. This equation says that for every 1mm of Rain, there is a demand for 5002 umbrellas. So, using Simple Regression, you can estimate the value of your variable.
+
+\par 
+Logistic Regression on the other hand is used to ascertain the probability of an event. And this event is captured in binary format, i.e. 0 or 1. For example, I want to ascertain if a customer will buy my product or not. For this, I would run a Logistic Regression on the (relevant) data and my dependent variable would be a binary variable (1=Yes; 0=No).
+
+\par
+In terms of graphical representation, Linear Regression gives a linear line as an output, once the values are plotted on the graph. Whereas, the logistic regression gives an S-shaped line
+
+\par
+The logistic model is unavoidable if it fits the data much better than the linear model. And sometimes it does. But in many situations the linear model fits just as well, or almost as well, as the logistic model. In fact, in many situations, the linear and logistic model give results that are practically indistinguishable except that the logistic estimates are harder to interpret.
+\par
+For the logistic model to fit better than the linear model, it must be the case that the log odds are a linear function of X, but the probability is not. And for that to be true, the relationship between the probability and the log odds must itself be nonlinear. But how nonlinear is the relationship between probability and log odds? If the probability is between .20 and .80, then the log odds are almost a linear function of the probability.
+
+\par
+Interpretability is not the only advantage of the linear probability model. Another advantage is computing speed. Fitting a logistic model is inherently slower because the model is fit by an iterative process of maximum likelihood. The slowness of logistic regression isn’t noticeable if you are fitting a simple model to a small or moderate-sized dataset. But if you are fitting a very complicated model or a very large data set, logistic regression can be frustratingly slow.
+
+\par
+The linear probability model is fast by comparison because it can be estimated noniteratively using ordinary least squares (OLS). OLS ignores the fact that the linear probability model is heteroskedastic with residual variance p(1-p), but the heteroscedasticity is minor if p is between .20 and .80, which is the situation where I recommend using the linear probability model at all. OLS estimates can be improved by using heteroscedasticity-consistent standard errors or weighted least squares. In my experience these improvements make little difference, but they are quick and reassuring.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{report} 
+
+\end{document}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    \end{document}
+
