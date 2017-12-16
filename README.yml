@@ -14,9 +14,7 @@ paper1:
         - 235
     status: 100%, 10/27/2017
     title: Big Data in Recommendation System
-    type: latex
     url: https://github.com/bigdata-i523/hid235/paper1/review.pdf
-    
 paper2:
     review: Nov 6 2017
     abstract: >
@@ -30,7 +28,6 @@ paper2:
         - 235
     status: 100%, 11/06/2017
     title: "Big data: An Opportunity for Historians"
-    type: latex
     url: https://github.com/bigdata-i523/hid235/paper2/report.tex
     chapter: Lifestyle
 project:
